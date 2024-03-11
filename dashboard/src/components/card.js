@@ -3,16 +3,16 @@ import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBolt,
-  faDungeon,
-  faWalking,
-  faLightbulb
+  faTruckMedical,
+  faUserDoctor,
+  faFileLines,
 } from "@fortawesome/free-solid-svg-icons";
 
 const icons = {
   bolt: faBolt,
-  dungeon: faDungeon,
-  walking: faWalking,
-  bulb: faLightbulb
+  ambulance: faTruckMedical,
+  doctor: faUserDoctor,
+  file: faFileLines,
 };
 
 const Card = ({ heading, icon }) => {

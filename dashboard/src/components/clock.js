@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import Clock from 'react-clock';
 
 const ClockComponent = () => {
   const [time, setTime] = useState(new Date());
@@ -10,7 +9,14 @@ const ClockComponent = () => {
     return () => clearInterval(interval);
   }, []);
 
-  return <ClockContainer>{`${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`}</ClockContainer>;
+  const h = time.getHours();
+  const m = time.getMinutes();
+  const s = time.getSeconds();
+  return (
+    <ClockContainer>
+      {`${h > 0 ? (h < 10 ? "0" + h : h) : "00"}:${m > 0 ? (m < 10 ? "0" + m : m) : "00"}:${s > 0 ? (s < 10 ? "0" + s : s) : "00"}`}
+    </ClockContainer>
+  );
 };
 
 const ClockContainer = styled.div`
