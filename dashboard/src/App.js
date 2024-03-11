@@ -6,7 +6,6 @@ import Card from './components/card';
 // import { useAuthState } from 'react-firebase-hooks/auth';
 import { useEffect, useState } from 'react';
 import firebaseInit from './service/firebase';
-import List from './components/list';
 
 const AppContainer = styled.div`
   @media screen and (max-width: 701px) {
@@ -23,7 +22,7 @@ const AppContainer = styled.div`
     grid-template-areas:
       "actrl clock astatus"
       "widgets widgets widgets"
-      "content content content";
+      "history history history";
   }
 `;
 
@@ -32,6 +31,15 @@ const WidgetContainer = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+`;
+
+const ListContainer = styled.div`
+    grid-area: history;
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    min-height: 300px;
+    flex-wrap: wrap;
 `;
 
 function Widget(props) {
@@ -44,6 +52,18 @@ function Widget(props) {
   )
 }
 
+function Data(props) {
+  const { data } = props;
+  return (
+    <ListContainer>
+      <ul>
+        {data?.map((item, index) => (
+          <li key={index}>{`Timestamp: ${item.timestamp} Body Temperature: ${item.bodyTemperature}`}</li>
+        ))}
+      </ul>
+    </ListContainer>
+  );
+}
 
 function App() {
   // const [user] = useAuthState(auth);
@@ -75,7 +95,7 @@ function App() {
       <GlobalStyle />
       <ClockComponent />
       <Widget />
-      <List data={data} />
+      <Data data={data} />
     </AppContainer>
   );
 }
